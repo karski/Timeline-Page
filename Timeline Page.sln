@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4021DCF0-2D93-4194-9EFD-AF9500B0D255}"
+	ProjectSection(SolutionItems) = preProject
+		spQuery.js = spQuery.js
+		timeline mockup.html = timeline mockup.html
+		timelineEvents.js = timelineEvents.js
+		timelineRows.js = timelineRows.js
+		timelineScript.js = timelineScript.js
+		timelineStyle.css = timelineStyle.css
+		updateWorker.js = updateWorker.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43F67695-20FF-49AA-A38A-8C0D093011C3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="timelineStyle.css">
+    <title>Testing</title>
+</head>
+
+<body>
+    <button onclick="fetchAll()">Click me!</button>
+    <script>
+        let myList = [];
+
+        function fetchSingle(entry) {
+            let p = fetch("https://reqres.in/api/users/" + entry.id + "?delay=" + entry.id)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(response.status + ":" + response.statusText);
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    //find the correct sortie - get the msnID from the first station entry
+                    let user;
+                    if (data !== undefined) {
+                        user = myList.find(s => { return s.id == data.data.id });
+                        user.details = data.data;
+                        entry.extraDetails = data.data;
+                        entry.extraDetails.Bonus = "I found you without searching!"
+                        /* for (let s of eventList) {
+                            if (s.id == data[0].fkMsn) {
+                                sortie = s;
+                                break;
+                            }
+                        } */
+                    }
+                    return Promise.resolve(user);
+
+                })
+                .catch(err => {
+                    return Promise.resolve("fetchStation failed: " + err);
+                });
+
+            return p;
+        }
+
+        function fetchAll() {
+            fetch("https://reqres.in/api/users?page=2")
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(response.status + ":" + response.statusText);
+                    }
+                })
+                .then(data => {
+                    //build your list of sorties for display
+                    myList = []; //clear out any existing events
+
+                    for (const row of data.data) {
+                        myList.push(row);
+                    }
+                    myList.push({"id":500});
+                    //get stations if required
+                    let promiseList = [];
+
+                    myList.map(entry => promiseList.push(fetchSingle(entry)));
+
+                    return Promise.all(promiseList);
+                })
+                .then(result => {
+                    console.log("redrawing after all sorties received");
+                    //redrawEvents();
+                })
+                .catch(error => {
+                    console.log('fetch error: ', error);
+                    if (confirm("Error getting data from database - Click OK to Refresh Page")) {
+                        location.reload();
+                    }
+                })
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,617 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="timelineStyle.css">
+    <title>Sortie Timeline</title>
+</head>
+<body>
+	<div style="position:relative;text-align:center;">
+		<div style="display:inline-block;position:absolute;left:0;">
+			Squadron:
+			<select id="selectSquadron">
+				<option>All</option>
+				<option>12RS</option>
+				<option>348RS</option>
+			</select>
+			<p><input id="checkboxStations" type="checkbox" checked>Show Stations</input></p>
+		</div>
+		<div style="display:inline-block;">
+			<h1 id="pageTitle">Sortie Timeline</h1>
+		</div>
+	</div>
+
+	<div class="timeline">
+		<div id="nowMarker"><div id="nowLine"></div></div>
+		<div style="grid-column:past/yesterday;" class="dateLine"></div>
+		<div style="grid-column:yesterday/today;" class="dateLine"></div>
+		<div style="grid-column:today/tomorrow;" class="dateLine"></div>
+		<div style="grid-column:tomorrow/nextday;" class="dateLine"></div>
+
+		<div style="grid-column-start:1;grid-column-end:-1;grid-row:1;">
+			<div class="timeline timelineHeader">
+				<div class="timelineHeader" id="yesterdayHeader">YESTERDAY</div>
+				<div class="timelineHeader" id="todayHeader">TODAY</div>
+				<div class="timelineHeader" id="tomorrowHeader">TOMORROW</div>
+				<div class="timelineTimeHeader" style="grid-column:2/4;text-align:right;">0</div>
+				<div class="timelineTimeHeader" style="grid-column:8/10;">6</div>
+				<div class="timelineTimeHeader" style="grid-column:14/16;">12</div>
+				<div class="timelineTimeHeader" style="grid-column:20/22;">18</div>
+				<div class="timelineTimeHeader" style="grid-column:26/28;">0</div>
+				<div class="timelineTimeHeader" style="grid-column:32/34;">6</div>
+				<div class="timelineTimeHeader" style="grid-column:38/40;">12</div>
+				<div class="timelineTimeHeader" style="grid-column:44/46;">18</div>
+				<div class="timelineTimeHeader" style="grid-column:50/52;">0</div>
+				<div class="timelineTimeHeader" style="grid-column:56/58;">6</div>
+				<div class="timelineTimeHeader" style="grid-column:62/64;">12</div>
+				<div class="timelineTimeHeader" style="grid-column:68/70;">18</div>
+				<div class="timelineTimeHeader" style="grid-column:74/76;text-align:left;">24</div>
+			</div>
+			<div class="timeline timelineRow brown">
+				<div class="rowHeader">Area1</div>
+
+				<div class="eventContainer" style="grid-column:past/4;">
+					<div class="schedTimeContainer">
+						<span class="timeLabel">0000</span>
+						<span class="endTime timeLabel">2300</span>
+					</div>
+					<div class="sortieBar  past" style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress past" style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:20/35;">
+					<div class="schedTimeContainer">
+						<span class="timeLabel">0000</span>
+						<span class="endTime timeLabel">2300</span>
+					</div>
+					<div class="sortieBar " style="left:0%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="left:10%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" id="123" style="grid-column:39/53;">
+					<div class="actTimeContainer">
+						<span class="timeLabel">0000</span>
+						<span class="endTime timeLabel">2300</span>
+					</div>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT123</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:63/future;">
+					<span class="timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar future " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE/Tail</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+					</div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+				</div>
+			</div>
+			<div class="timeline timelineRow purple">
+				<div class="rowHeader">Area2</div>
+
+				<div class="eventContainer past" style="grid-column:past/15;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar  past" style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note... really long description, or maybe just one that has a shorter than usual sortie duration</p>
+					</div>
+					<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress past" style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:10/25;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+
+				</div>
+				<div class="eventContainer" style="grid-column:20/35;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:30/45;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+
+				</div>
+				<div class="eventContainer" style="grid-column:39/53;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:63/future;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar future " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+					</div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+				</div>
+
+			</div>
+			<div class="timeline timelineRow pink">
+				<div class="rowHeader">Area3</div>
+
+				<div class="eventContainer past" style="grid-column:past/15;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar  past" style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress past" style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:20/35;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:39/53;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:63/future;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar future " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+					</div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+				</div>
+			</div>
+			<div class="timeline timelineRow green">
+				<div class="rowHeader">Area4</div>
+
+				<div class="eventContainer past" style="grid-column:past/15;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar  past" style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress past" style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:20/35;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:39/53;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:63/future;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar future " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+					</div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+				</div>
+			</div>
+			<div class="timeline timelineRow blue">
+				<div class="rowHeader">Ferry/LOCAL</br>Area5/6</div>
+
+				
+			</div>
+			<!--<div class="timeline timelineRow lightblue">
+			<div class="rowHeader">LOCALS</br>TRANSIT</div>
+
+			<div class="eventContainer past" style="grid-column:past/15;">
+				<span class="schedStart timeLabel">0000</span>
+				<span class="endTime timeLabel">2300</span>
+				<div class="sortieBar  past" style="left:10%;width:90%;">
+					<h3>FLIGHT01</h3>
+					<p>MCE</p>
+					<p>additional g info note</p>
+				</div>
+				<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+				<div class="actTimeContainer">
+					<span class="actStart timeLabel ">0000</span>
+					<span class="endTime timeLabel ">2300</span>
+				</div>
+				<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+				<div class="stationProgress past" style="left:15%;width:70%;"></div>
+				<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+				<div class="stationProgress " style="left:35%;width:20%;"></div>
+				<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+			</div>
+			<div class="eventContainer" style="grid-column:20/35;">
+				<span class="schedStart timeLabel">0000</span>
+				<span class="endTime timeLabel">2300</span>
+				<div class="sortieBar " style="left:10%;width:90%;">
+					<h3>FLIGHT01</h3>
+					<p>MCE</p>
+					<p>additional g info note</p>
+				</div>
+				<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+				<div class="actTimeContainer">
+					<span class="actStart timeLabel ">0000</span>
+					<span class="endTime timeLabel ">2300</span>
+				</div>
+				<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+				<div class="stationProgress " style="left:15%;width:70%;"></div>
+				<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+				<div class="stationProgress " style="left:35%;width:20%;"></div>
+				<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+			</div>
+			<div class="eventContainer" style="grid-column:39/53;">
+				<span class="schedStart timeLabel">0000</span>
+				<span class="endTime timeLabel">2300</span>
+				<div class="sortieBar " style="left:10%;width:90%;">
+					<h3>FLIGHT01</h3>
+					<p>MCE</p>
+					<p>additional g info note</p>
+				</div>
+				<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+				<div class="actTimeContainer">
+					<span class="actStart timeLabel ">0000</span>
+					<span class="endTime timeLabel ">2300</span>
+				</div>
+				<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+				<div class="stationProgress " style="left:15%;width:70%;"></div>
+				<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+				<div class="stationProgress " style="left:35%;width:20%;"></div>
+				<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+			</div>
+			<div class="eventContainer" style="grid-column:63/future;">
+				<span class="schedStart timeLabel">0000</span>
+				<span class="endTime timeLabel">2300</span>
+				<div class="sortieBar future " style="left:10%;width:90%;">
+					<h3>FLIGHT01</h3>
+					<p>MCE</p>
+					<p>additional g info note</p>
+				</div>
+				<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+				</div>
+				<div class="actTimeContainer">
+					<span class="actStart timeLabel ">0000</span>
+					<span class="endTime timeLabel ">2300</span>
+				</div>
+				<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+				<div class="stationProgress " style="left:15%;width:70%;"></div>
+				<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+				<div class="stationProgress " style="left:35%;width:20%;"></div>
+				<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+			</div>
+		</div>-->
+			<div class="timeline timelineRow grey">
+				<div class="rowHeader">Area7</div>
+
+				<div class="eventContainer past" style="grid-column:past/15;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar  past" style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress past" style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar past" style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress past" style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" id="testevent" style="grid-column:20/35;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel offTime">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:39/53;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;"></div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar " style="left:60%;width:30%;">station 3</div>
+				</div>
+				<div class="eventContainer" style="grid-column:63/future;">
+					<span class="schedStart timeLabel">0000</span>
+					<span class="endTime timeLabel">2300</span>
+					<div class="sortieBar future " style="left:10%;width:90%;">
+						<h3>FLIGHT01</h3>
+						<p>MCE</p>
+						<p>additional g info note</p>
+					</div>
+					<div class="sortieProgress " style="margin-left:0%;width:75%;">
+
+					</div>
+					<div class="actTimeContainer">
+						<span class="actStart timeLabel ">0000</span>
+						<span class="endTime timeLabel ">2300</span>
+					</div>
+					<div class="stationBar " style="left:10%;width:40%;">stationg name</div>
+					<div class="stationProgress " style="left:15%;width:70%;"></div>
+					<div class="stationBar " style="left:40%;width:30%;">sta name</div>
+					<div class="stationProgress " style="left:35%;width:20%;"></div>
+					<div class="stationBar future" style="left:60%;width:30%;">station 3</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<script src="timelineScript.js"></script>
+	<script src="timelineEvents.js"></script>
+	<!--<script>
+		//updateTimeHeader();
+
+		//function test() {
+		//	document.getElementById("testevent").style = "grid-column:10/25;";
+		//}
+
+		//function updateTimeHeader() {
+		//	/*position nowMarker*/
+		//	var d = new Date();
+		//	var h = d.getUTCHours();
+		//	var m = d.getUTCMinutes();
+		//	document.getElementById("nowMarker").setAttribute("style", "grid-column:" + (27 + h) + ";");
+		//	document.getElementById("nowLine").style.left = (m / 60 * 100) + "%";
+		//	/*date labels*/
+		//	document.getElementById("todayHeader").innerHTML = formatDate(d);
+		//	d.setUTCDate(d.getUTCDate() - 1);
+		//	document.getElementById("yesterdayHeader").innerHTML = formatDate(d);
+		//	d.setUTCDate(d.getUTCDate() + 2);
+		//	document.getElementById("tomorrowHeader").innerHTML = formatDate(d);
+		//}
+
+		//function formatDate(d) {
+		//	var mmm = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+		//	return d.getUTCDate() + " " + mmm[d.getUTCMonth()];
+		//}
+	</script>-->
+
+</body>
+</html>

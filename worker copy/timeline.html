@@ -1,0 +1,86 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="timelineStyle.css">
+    <title>Sortie Timeline</title>
+</head>
+<body>
+    <div style="position:relative;text-align:center;margin-top:15px;">
+        <h1 id="pageTitle">Sortie Timeline</h1>
+        <span style="display:inline-block;position:absolute;right:0;">
+            Squadron:
+            <select id="selectSquadron" onchange="changeSquadron()">
+                <option value="All">All</option>
+                <option value="12RS">12RS</option>
+                <option value="348RS">348RS</option>
+            </select>
+            <br />
+            <input id="checkboxStations" type="checkbox" checked onchange="clickStations()" />Show Stations
+        </span>
+        <span style="display:inline-block;position:absolute;left:0;">
+            Display Mode:<br />
+            <select id="selectRowMode" onchange="changeRowMode()">
+                <option value="COCOM">COCOM</option>
+                <option value="Airfield">Airfield</option>
+                <option value="MCE">MCE</option>
+            </select>
+        </span>
+    </div>
+
+    <div class="timeline">
+        <div id="nowMarker"><div id="nowLine"></div></div>
+        <div style="grid-column:past/yesterday;" class="dateLine"></div>
+        <div style="grid-column:yesterday/today;" class="dateLine"></div>
+        <div style="grid-column:today/tomorrow;" class="dateLine"></div>
+        <div style="grid-column:tomorrow/nextday;" class="dateLine"></div>
+
+        <div id="timelineRowContainer" style="grid-column-start:1;grid-column-end:-1;grid-row:1;">
+            <div class="timeline timelineHeader">
+                <div class="timelineHeader" id="yesterdayHeader">YESTERDAY</div>
+                <div class="timelineHeader" id="todayHeader">TODAY</div>
+                <div class="timelineHeader" id="tomorrowHeader">TOMORROW</div>
+                <div class="timelineTimeHeader" style="grid-column:3/5;">0</div>
+                <div class="timelineTimeHeader" style="grid-column:9/11;">6</div>
+                <div class="timelineTimeHeader" style="grid-column:15/17;">12</div>
+                <div class="timelineTimeHeader" style="grid-column:21/23;">18</div>
+                <div class="timelineTimeHeader" style="grid-column:27/29;">0</div>
+                <div class="timelineTimeHeader" style="grid-column:33/35;">6</div>
+                <div class="timelineTimeHeader" style="grid-column:39/41;">12</div>
+                <div class="timelineTimeHeader" style="grid-column:45/47;">18</div>
+                <div class="timelineTimeHeader" style="grid-column:51/53;">0</div>
+                <div class="timelineTimeHeader" style="grid-column:57/59;">6</div>
+                <div class="timelineTimeHeader" style="grid-column:63/65;">12</div>
+                <div class="timelineTimeHeader" style="grid-column:69/71;">18</div>
+                <div class="timelineTimeHeader" style="grid-column:75/77;">24</div>
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">CENTCOM</div>
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">AFRICOM</div>
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">EUCOM</div>
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">PACOM</div>
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">Ferry/LOCAL</br>N/SCOM</div>
+
+            </div>
+            <div class="timeline timelineRow">
+                <div class="rowHeader">BACN</div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="spQuery.js"></script>
+    <script src="timelineRows.js"></script>
+    <script src="timelineEvents.js"></script>
+    <script src="timelineScript.js"></script>
+
+</body>
+</html>

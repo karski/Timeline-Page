@@ -1,0 +1,541 @@
+﻿body {
+    font-family: "Calibri","sans-serif";
+    background-color: dimgray;
+    min-width: 500px;
+}
+
+h1 {
+    display: inline;
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    /*font-size: 0.8em;*/
+    /*keep text from growing vertically unchecked - elipses seem classy*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*.success{
+    color: forestgreen;
+}
+
+.partial{
+    color: gold;
+}*/
+
+.cnx{
+    color:crimson;
+}
+
+/*div {
+    border: solid;
+    border-width: 1px;
+    border-color: aqua;
+}*/
+
+
+.timeline {
+    display: grid;
+    display: -ms-grid;
+    grid-auto-flow: column;
+-ms-grid-auto-flow: column;
+    z-index: -1;
+    background-color: whitesmoke;
+    /*Area tilte|past overflow|72 hours(3 day view)|future overflow*/
+    /*grid-template-columns: 50px [past] 50px [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] 50px [future];*/
+    grid-template-columns: 50px [past] repeat(2, 1fr) [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] repeat(2, 1fr) [future];
+-ms-grid-template-columns: 50px [past] repeat(2, 1fr) [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] repeat(2, 1fr) [future];
+}
+
+/*.timelineContainer {
+    grid-template-columns: 50px [past] 50px [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] 50px [future];
+-ms-grid-template-columns: 50px [past] 50px [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] 50px [future];
+}*/
+
+.timelineRow {
+    /*Area tilte|past overflow|72 hours(3 day view)|future overflow*/
+    /*grid-template-columns:50px 50px repeat(72, 1fr) 50px;*/
+    /*grid-template-columns: 50px [past] 50px [yesterday] repeat(24, 1fr) [today] repeat(24, 1fr) [tomorrow] repeat(24, 1fr) [nextday] 50px [future];*/
+    grid-template-rows: [rowHeader-start] 1fr [rowHeader-end];
+-ms-grid-template-rows: [rowHeader-start] 1fr [rowHeader-end];
+    /*background-color: whitesmoke;*/
+    background: transparent; /*make background transparent and move color to timeline grid so that column borders can be drawn*/
+    border: solid;
+    border-width: 1px;
+    border-color: dimgrey;
+}
+
+.timelineRow.empty{
+    display:none;
+}
+
+
+/*timeline headers*/
+.timelineHeader {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    overflow: visible;
+    z-index: 100;
+    background-color: lightgrey;
+}
+
+#yesterdayHeader {
+    grid-column: yesterday/today;
+-ms-grid-column: yesterday/today;
+}
+
+#todayHeader {
+    grid-column: today/tomorrow;
+-ms-grid-column: today/tomorrow;
+}
+
+#tomorrowHeader {
+    grid-column: tomorrow/nextday;
+-ms-grid-column: tomorrow/nextday;
+}
+
+.timelineTimeHeader {
+    text-align: center;
+    font-weight: normal;
+    font-size: small;
+    z-index: 100;
+    background-color: lightgrey;
+}
+
+#nowMarker {
+    /*div to surround the nowLine (allowing the line to be moved by minutes*/
+    height: 100%;
+    z-index: 99;
+    grid-row: 1;
+-ms-grid-row: 1;
+}
+
+#nowLine {
+    background-color: rgba(255, 165, 0, 0.6); /*orange*/
+    width: 3px;
+    height: 100%;
+    z-index: 0;
+    position: relative;
+}
+
+.dateLine {
+    z-index: 0;
+    grid-row: 1;
+-ms-grid-row: 1;
+    border: solid;
+    /*make the border only show up on the right side for thinner, more subtle lines*/
+    border-width: 0 1px 0 0;
+    border-color: dimgray;
+}
+
+/*style for header of a row*/
+.rowHeader {
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    writing-mode: vertical-lr;
+    text-orientation: sideways-right;
+    transform: rotate(180deg);
+    /*display:block;*/
+    padding: 5px 0px 5px 0px;
+    /*grid-row: span rowHeader-start/10 rowHeader-end;*/ /*this only seems to work in chrome*/
+    /*border: solid;
+    border-width: 0px 1px 0px 0px;
+    border-color: dimgray;*/
+}
+
+/*event-specific styles*/
+.eventContainer {
+    position: relative; /*allows elements inside to position *relative* to this container*/
+    margin-bottom: 3px;
+}
+
+.sortieBar {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    box-shadow: 0px 5px 2px 0px rgba(0,0,0,0.2);
+}
+
+.sortieProgress {
+    position: relative;
+    border-width: 0;
+    height: 5px;
+    z-index: 2;
+    /*testing*/
+    /*background-color: greenyellow;*/
+}
+
+.stationBar {
+    position: relative;
+    text-align: center;
+    border: 0;
+    z-index: 1;
+    font-size: 12px;
+    /*keep text from growing vertically unchecked - elipses seem classy*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.stationProgress {
+    position: relative;
+    border-width: 0;
+    height: 3px;
+    z-index: 2;
+    /*testing*/
+    /*background-color: greenyellow;*/
+}
+
+.timeLabel {
+    z-index: 3;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(245,245,245,.8);
+    border-radius: 5px;
+}
+
+.offTime {
+    color: crimson;
+}
+
+/*.schedStart {
+    z-index: 3;
+    font-size: 15px;
+    font-weight: bold;
+}*/
+
+.schedEnd {
+    float: right;
+    /*z-index: 3;
+    font-size: 15px;
+    font-weight: bold;*/
+}
+
+.schedTimeContainer {
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.actTimeContainer {
+    position: relative;
+    height: 0;
+    z-index: 3;
+}
+
+/*.actStart {
+    z-index: 3;
+    font-size: 15px;
+    font-weight: bold;
+    
+}*/
+
+.endTime {
+    position: absolute;
+	right: 0;
+    /*float: right;*/
+}
+
+
+
+
+/*Row color schemes*/
+/*BROWN*/
+.brown > .sortieBar {
+    background-color: rgb(148,138,84); /*#946f00*/
+}
+
+    .brown > .sortieBar.future {
+        background: linear-gradient(to right, rgb(148,138,84) 70%, transparent);
+    }
+
+    .brown > .sortieBar.past {
+        background: linear-gradient(to right, transparent, rgb(148,138,84) 70%);
+    }
+
+.brown > .sortieProgress {
+    background-color: rgb(51,48,29); /*#613312;*/
+}
+
+    .brown > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(51,48,29) 70%);
+    }
+
+.brown > .stationBar {
+    background-color: rgb(208, 202, 169); /*#946f00*/
+}
+
+    .brown > .stationBar.future {
+        background: linear-gradient(to right, rgb(208, 202, 169) 70%, transparent);
+    }
+
+    .brown > .stationBar.past {
+        background: linear-gradient(to right, transparent, rgb(208, 202, 169) 70%);
+    }
+
+.brown > .stationProgress {
+    background-color: #946f00; /*#613312;*/
+}
+
+    .brown > .stationProgress.past {
+        background: linear-gradient(to right, transparent, #946f00 70%);
+    }
+
+
+/*PURPLE*/
+.purple > .sortieBar {
+    background-color: rgb(190,40,250); /*mediumpurple;*/
+}
+
+    .purple > .sortieBar.future {
+        background: linear-gradient(to right, rgb(190,40,250) 70%, transparent);
+    }
+
+    .purple > .sortieBar.past {
+        background: linear-gradient(to right, transparent, rgb(190,40,250) 70%);
+    }
+
+.purple > .sortieProgress {
+    background-color: purple; /*rgb(160,5,230);*/ /*purple;*/
+}
+
+    .purple > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, purple 70%);
+    }
+
+.purple > .stationBar {
+    background-color: rgb(220, 155, 220);
+}
+
+    .purple > .stationBar.future {
+        background: linear-gradient(to right, rgb(220, 155, 220) 70%, transparent);
+    }
+
+    .purple > .stationBar.past {
+        background: linear-gradient(to right, transparent, rgb(220, 155, 220) 70%);
+    }
+
+.purple > .stationProgress {
+    background-color: darkorchid; /*rgb(160,5,230);*/ /*purple;*/
+}
+
+    .purple > .stationProgress.past {
+        background: linear-gradient(to right, transparent, darkorchid 70%);
+    }
+
+/*PINK*/
+.pink > .sortieBar {
+    background-color: rgb(255,102,255);
+}
+
+    .pink > .sortieBar.future {
+        background: linear-gradient(to right, rgb(255,102,255) 70%, transparent);
+    }
+
+    .pink > .sortieBar.past {
+        background: linear-gradient(to right, transparent,rgb(255,102,255) 70%);
+    }
+
+.pink > .sortieProgress {
+    background-color: rgb(200,0,150);
+}
+
+    .pink > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(200,0,150) 70%);
+    }
+
+.pink > .stationBar {
+    background-color: rgb(255, 200, 255);
+}
+
+    .pink > .stationBar.future {
+        background: linear-gradient(to right, rgb(255, 200, 255) 70%, transparent);
+    }
+
+    .pink > .stationBar.past {
+        background: linear-gradient(to right, transparent,rgb(255, 200, 255) 70%);
+    }
+
+.pink > .stationProgress {
+    background-color: hotpink;
+}
+
+    .pink > .stationProgress.past {
+        background: linear-gradient(to right, transparent, hotpink 70%);
+    }
+
+
+/*GREEN*/
+.green > .sortieBar {
+    background-color: rgb(146,208,80);
+}
+
+    .green > .sortieBar.future {
+        background: linear-gradient(to right, rgb(146,208,80) 70%, transparent);
+    }
+
+    .green > .sortieBar.past {
+        background: linear-gradient(to right, transparent,rgb(146,208,80) 70%);
+    }
+
+.green > .sortieProgress {
+    background-color: rgb(0,102,0);
+}
+
+    .green > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(0,102,0) 70%);
+    }
+
+.green > .stationBar {
+    background-color: rgb(200, 250, 145);
+}
+
+    .green > .stationBar.future {
+        background: linear-gradient(to right, rgb(200, 250, 145) 70%, transparent);
+    }
+
+    .green > .stationBar.past {
+        background: linear-gradient(to right, transparent,rgb(200, 250, 145) 70%);
+    }
+
+.green > .stationProgress {
+    background-color: rgb(81, 189, 81);
+}
+
+    .green > .stationProgress.past {
+        background: linear-gradient(to right, transparent, rgb(81, 189, 81) 70%);
+    }
+
+
+/*BLUE*/
+.blue > .sortieBar {
+    background-color: rgb(121,182,255);
+}
+
+    .blue > .sortieBar.future {
+        background: linear-gradient(to right, rgb(121,182,255) 70%, transparent);
+    }
+
+    .blue > .sortieBar.past {
+        background: linear-gradient(to right, transparent,rgb(121,182,255) 70%);
+    }
+
+.blue > .sortieProgress {
+    background-color: rgb(33,89,104);
+}
+
+    .blue > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(33,89,104) 70%);
+    }
+
+.blue > .stationBar {
+    background-color: rgb(188, 218, 255);
+}
+
+    .blue > .stationBar.future {
+        background: linear-gradient(to right, rgb(188, 218, 255) 70%, transparent);
+    }
+
+    .blue > .stationBar.past {
+        background: linear-gradient(to right, transparent,rgb(188, 218, 255) 70%);
+    }
+
+.blue > .stationProgress {
+    background-color: rgb(18, 185, 230);
+}
+
+    .blue > .stationProgress.past {
+        background: linear-gradient(to right, transparent, rgb(18, 185, 230) 70%);
+    }
+
+
+/*LIGHT BLUE*/
+.lightblue > .sortieBar {
+    background-color: rgb(0,176,240);
+}
+
+    .lightblue > .sortieBar.future {
+        background: linear-gradient(to right, rgb(0,176,240) 70%, transparent);
+    }
+
+    .lightblue > .sortieBar.past {
+        background: linear-gradient(to right, transparent,rgb(0,176,240) 70%);
+    }
+
+.lightblue > .sortieProgress {
+    background-color: rgb(33,89,104); /*0,0,255*/
+}
+
+    .lightblue > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(33,89,104) 70%);
+    }
+
+.lightblue > .stationBar {
+    background-color: rgb(174, 221, 239);
+}
+
+    .lightblue > .stationBar.future {
+        background: linear-gradient(to right,rgb(174, 221, 239) 70%, transparent);
+    }
+
+    .lightblue > .stationBar.past {
+        background: linear-gradient(to right, transparent,rgb(174, 221, 239) 70%);
+    }
+
+.lightblue > .stationProgress {
+    background-color: rgb(66, 168, 195); /*0,0,255*/
+}
+
+    .lightblue > .stationProgress.past {
+        background: linear-gradient(to right, transparent, rgb(66, 168, 195) 70%);
+    }
+
+
+/*GREY*/
+.grey > .sortieBar {
+    background-color: rgb(166,166,166);
+}
+
+    .grey > .sortieBar.future {
+        background: linear-gradient(to right, rgb(166,166,166) 70%, transparent);
+    }
+
+    .grey > .sortieBar.past {
+        background: linear-gradient(to right, transparent,rgb(166,166,166) 70%);
+    }
+
+.grey > .sortieProgress {
+    background-color: rgb(64,64,64);
+}
+
+    .grey > .sortieProgress.past {
+        background: linear-gradient(to right, transparent, rgb(64,64,64) 70%);
+    }
+
+.grey > .stationBar {
+    background-color: rgb(220,220,220);
+}
+
+    .grey > .stationBar.future {
+        background: linear-gradient(to right, rgb(220,220,220) 70%, transparent);
+    }
+
+    .grey > .stationBar.past {
+        background: linear-gradient(to right, transparent,rgb(220,220,220) 70%);
+    }
+
+.grey > .stationProgress {
+    background-color: rgb(130,130,130);
+}
+
+    .grey > .stationProgress.past {
+        background: linear-gradient(to right, transparent, rgb(130,130,130) 70%);
+    }
